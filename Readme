@@ -1,0 +1,17 @@
+Design decisions:
+1. Since this is an IO intensive app (rather than CPU intensive app), we will go with non-blocking from top-down.
+    a. The HTTP server is chosen to be goliath.
+    b. HTTP client is chosen to be em-http-request.
+2.
+
+Setup instructions:
+1. Should have ruby & ruby devkit installed
+2. Run the following commands to run the app:
+    gem install bundle
+    bundle install
+    rake run
+3. To run tests:
+    rake
+
+Note: This is my first ever ruby project. I have taken decisions based on my experience with building applications in other
+languages (Scala, Java, etc). I may not have taken the best decisions.
