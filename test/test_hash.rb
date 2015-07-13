@@ -1,4 +1,4 @@
-require './app/helper/hash'
+require './app/helpers/hash'
 require "test/unit"
 
 class TestHash < Test::Unit::TestCase

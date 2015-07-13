@@ -10,9 +10,10 @@ task :test do
   end
 end
 
-task :default => :test
-
 desc 'Runs the server'
 task :run do
   ruby "server.rb"
 end
+
+task :default => :test
+
