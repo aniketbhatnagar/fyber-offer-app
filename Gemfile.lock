@@ -51,6 +51,7 @@ PLATFORMS
 DEPENDENCIES
   em-http-request
   em-synchrony
+  eventmachine
   goliath
   json
   rack-fiber_pool
