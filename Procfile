@@ -1,0 +1,1 @@
+web bundle exec rackup config.ru -sv -e prod -p $PORT
