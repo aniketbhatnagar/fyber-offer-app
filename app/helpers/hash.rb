@@ -10,11 +10,11 @@ module HashHelper
       serializedParams = serializedParams + key + '=' + value + '&'
     end
     serializedParams = serializedParams + apiKey
-    return hash(serializedParams)
+    hash(serializedParams)
   end
 
   def self.hash(msg)
-    return Digest::SHA1.hexdigest msg
+    Digest::SHA1.hexdigest msg
   end
 
 end

@@ -1,28 +1,33 @@
 class Offer
-  def initialize(id, title, thumbnailLowRes, payout)
+  def initialize(id, title, thumbnailLowRes, payout, link)
     @id = id
     @title = title
     @thumbnailLowRes = thumbnailLowRes
     @payout = payout
+    @link = link
   end
 
   def id
-    return @id
+    @id
   end
 
   def title
-    return @title
+    @title
   end
 
   def thumbnailLowRes
-    return @thumbnailLowRes
+    @thumbnailLowRes
   end
 
   def payout
-    return @payout
+    @payout
+  end
+
+  def link
+    @link
   end
 
   def to_s
-    return "Offer(#@id, #@title, #@thumbnailLowRes, #@payout)"
+    "Offer(#@id, #@title, #@thumbnailLowRes, #@payout, #@link)"
   end
 end

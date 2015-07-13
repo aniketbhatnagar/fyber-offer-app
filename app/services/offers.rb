@@ -23,25 +23,33 @@ class Offers
     mergedParams = @defaultParams.merge(additionalParams)
     mergedParams['hashkey'] = @hashHelper.generateHash(mergedParams, @apiKey)
     httpResponse = @httpclient.get(@url, Hash['Accept-Encoding' => 'gzip'], mergedParams)
-    assertResponse(httpResponse)
-    return parseOffers(httpResponse.body)
+    assertResponseHash(httpResponse)
+    responseJson = JSON.parse(httpResponse.body)
+    responseCode = responseJson['code']
+    if responseCode.nil? || !responseCode.eql?('OK')
+      raise responseJson['message']
+    else
+      parseOffers(responseJson)
+    end
+
   end
 
   private
-  def assertResponse(httpResponse)
+  def assertResponseHash(httpResponse)
     responseHash = httpResponse.headers['X-Sponsorpay-Response-Signature']
-    toHash = httpResponse.body + @apiKey
-    generatedHash = @hashHelper.hash(toHash)
-    raise "response validation failed" unless generatedHash.eql?(responseHash)
+    if (!responseHash.nil?)
+      toHash = httpResponse.body + @apiKey
+      generatedHash = @hashHelper.hash(toHash)
+      raise "response validation failed" unless generatedHash.eql?(responseHash)
+    end
   end
 
   private
-  def parseOffers(response)
-    parsed = JSON.parse(response)
-    offers = parsed['offers'].map { |offerJson|
-      Offer.new(offerJson['offer_id'], offerJson['title'], offerJson['thumbnail']['lowres'], offerJson['payout'])
+  def parseOffers(responseJson)
+    offers = responseJson['offers'].map { |offerJson|
+      Offer.new(offerJson['offer_id'], offerJson['title'], offerJson['thumbnail']['lowres'], offerJson['payout'], offerJson['link'])
     }
-    return offers
+    offers
   end
 
   private

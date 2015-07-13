@@ -6,7 +6,7 @@ module HttpClient
     http = EM::HttpRequest.new(url).get :headers => headers, :query => queryParams
     resp = http.response
     headers = http.response_header
-    return HttpResponse.new(headers, resp)
+    HttpResponse.new(headers, resp)
   end
 end
 
@@ -16,9 +16,9 @@ class HttpResponse
     @body = body
   end
   def body
-    return @body
+    @body
   end
   def headers
-    return @headers
+    @headers
   end
 end

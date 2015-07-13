@@ -7,10 +7,11 @@ Design decisions:
 
 Setup instructions:
 1. Should have ruby 2.2.2 & ruby devkit installed
-2. Run the following commands to run the app:
+2. Run the following commands to run the app and then hit http://localhost:9000 in your browser:
     gem install bundle
     bundle install
     rake run
+
 3. To run tests:
     rake
 
