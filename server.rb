@@ -1,3 +1,4 @@
+require 'eventmachine'
 require 'goliath'
 require 'tilt'
 require 'tilt/erb'

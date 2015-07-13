@@ -1,1 +1,1 @@
-web: bundle install | bundle exec ruby server.rb -sv -e prod -p $PORT
+bundle exec ruby server.rb -sv -e prod -p $PORT
