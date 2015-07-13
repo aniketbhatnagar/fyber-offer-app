@@ -1,9 +1,9 @@
 Design decisions:
-1. Since this is an IO intensive app (rather than CPU intensive app), we will go with non-blocking from top-down.
+1. Since this is an IO intensive app (rather than CPU intensive app), we will go with non-blocking from top to bottom.
     a. The HTTP server is chosen to be goliath.
     b. HTTP client is chosen to be em-http-request.
-2. Fiber pool
-3. Anemic domain
+2. We make goliath to use a a fixed Fiber pool so that we don't end up creating unlimited fibers.
+3. Models/domain classes are anemic and are only used to transfer data (i.e. they only have a state but no behavior). This allows for easy serialization of models, if need be. Ideally, they should be immutable too.
 
 Setup instructions:
 1. Should have ruby 2.2.2 & ruby devkit installed
